@@ -27,6 +27,12 @@ async function createGame(game) {
   return game;
 }
 
+async function deleteGame(id) {
+  await client.connect();
+  await GameCollection.deleteOne({ _id: new ObjectId(id) });
+  return game;
+}
+
 async function getGamesOrderByScore(filter = {}) {
   await client.connect();
   filter = {
@@ -41,6 +47,7 @@ export {
   getGameById,
   updateGame,
   createGame,
+  deleteGame,
   getGamesOrderByScore
 }
 
@@ -49,5 +56,6 @@ export default {
   getGameById,
   updateGame,
   createGame,
+  deleteGame,
   getGamesOrderByScore
 }

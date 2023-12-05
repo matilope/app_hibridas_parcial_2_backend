@@ -12,8 +12,10 @@ async function createAccount(account) {
   const newAccount = { ...account };
   const salt = await bcrypt.genSalt(10);
   newAccount.password = await bcrypt.hash(account.password, salt);
-  await AccountsCollection.insertOne({ ...newAccount });
+  const accountData = await AccountsCollection.insertOne({ ...newAccount });
   return {
+    account_id: accountData.insertedId,
+    account_name: account.name,
     token: await createToken({ ...account, password: undefined })
   }
 }
@@ -29,7 +31,7 @@ async function verifyAccount(account) {
     throw new Error("La contraseña es incorrecta");
   }
   return {
-    account: { ...account, password: undefined }
+    account: { ...accountData, password: undefined }
   }
 }
 

@@ -26,6 +26,7 @@ async function createVote(idGame, vote) {
   await updateGame(idGame, { totalScore: gameScore });
   const newVote = {
     ...vote,
+    rating: parseInt(vote.rating),
     account_id: idAccount,
     game_id: new ObjectId(idGame),
     game_name: gameExist.name
@@ -55,7 +56,7 @@ async function validations(idGame, idAccount) {
   if (idGame && idAccount) {
     const accountAlreadyVotedOnThisGame = await GamesVotesCollection.findOne({ game_id: new ObjectId(idGame), account_id: idAccount });
     if (accountAlreadyVotedOnThisGame) {
-      throw new Error("Ya se realizo una votación en este juego");
+      throw new Error("Ya ha realizado una votación en el juego");
     }
   }
   if (idAccount) {

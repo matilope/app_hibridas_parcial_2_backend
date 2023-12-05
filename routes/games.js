@@ -12,7 +12,8 @@ route.route('/games')
 route.get('/games/edition', GamesController.getGamesOrderByScore)
 route.route('/games/:id')
   .get(GamesController.getGameById)
-  .patch([validateUpdateGame, verifySession], GamesController.updateGame);
+  .patch([validateUpdateGame, verifySession], GamesController.updateGame)
+  .delete([verifySession], GamesController.deleteGame);
 
 route.use('/games', GamesVotesRoute);
 

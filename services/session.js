@@ -12,10 +12,11 @@ async function createToken(payload) {
   return token;
 }
 
-async function createSession(account) {
+async function createSession(accountData) {
+  const { account } = await verifyAccount({ ...accountData });
   return {
-    account: await verifyAccount(account),
-    token: await createToken({ ...account, password: undefined })
+    account,
+    token: await createToken({ ...accountData, password: undefined })
   }
 }
 

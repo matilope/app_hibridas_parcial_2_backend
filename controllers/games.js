@@ -38,6 +38,16 @@ async function createGame(req, res) {
   }
 }
 
+async function deleteGame(req, res) {
+  const { id } = req.params;
+  try {
+    const deletedGame = await GameServices.deleteGame(id);
+    res.status(201).json(deletedGame);
+  } catch ({ message }) {
+    res.status(500).json({ message });
+  }
+}
+
 async function getGamesOrderByScore(req, res) {
   const { genre } = req.query;
   try {
@@ -53,6 +63,7 @@ export default {
   getGameById,
   updateGame,
   createGame,
+  deleteGame,
   getGamesOrderByScore
 }
 
@@ -61,5 +72,6 @@ export {
   getGameById,
   updateGame,
   createGame,
+  deleteGame,
   getGamesOrderByScore
 }
