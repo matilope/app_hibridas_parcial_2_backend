@@ -30,7 +30,7 @@ async function createGame(game) {
 async function deleteGame(id) {
   await client.connect();
   await GameCollection.deleteOne({ _id: new ObjectId(id) });
-  return game;
+  return id;
 }
 
 async function getGamesOrderByScore(filter = {}) {
