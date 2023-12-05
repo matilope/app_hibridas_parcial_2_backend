@@ -36,11 +36,13 @@ async function deleteSession(token) {
 export default {
   createSession,
   verifyToken,
-  deleteSession
+  deleteSession,
+  createToken
 }
 
 export {
   createSession,
   verifyToken,
-  deleteSession
+  deleteSession,
+  createToken
 }

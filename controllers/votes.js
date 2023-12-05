@@ -5,8 +5,8 @@ async function getVotes(req, res) {
   try {
     const votes = await VotesServices.getVotes(game_id);
     res.status(200).json(votes);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch ({ message }) {
+    res.status(500).json({ message });
   }
 }
 
@@ -15,8 +15,8 @@ async function getVotesByAccountId(req, res) {
   try {
     const vote = await VotesServices.getVotesByAccountId(account_id);
     res.status(200).json(vote);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch ({ message }) {
+    res.status(500).json({ message });
   }
 }
 
@@ -25,8 +25,8 @@ async function createVote(req, res) {
   try {
     const createdVote = await VotesServices.createVote(game_id, req.body);
     res.status(201).json(createdVote);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch ({ message }) {
+    res.status(500).json({ message });
   }
 }
 
@@ -35,8 +35,8 @@ async function getAverage(req, res) {
   try {
     const getAverga = await VotesServices.getAverage(game_id);
     res.status(201).json(getAverga);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch ({ message }) {
+    res.status(500).json({ message });
   }
 }
 

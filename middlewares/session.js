@@ -14,7 +14,7 @@ async function verifySession(req, res, next) {
     req.session = tokenVerification;
     next();
   } catch ({ message }) {
-    return res.status(500).json({ message });
+    return res.status(500).json(message);
   }
 }
 

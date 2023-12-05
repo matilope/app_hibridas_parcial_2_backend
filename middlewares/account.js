@@ -9,8 +9,8 @@ function validateCreateAccount(req, res, next) {
       req.body = account;
       next();
     })
-    .catch((err) => {
-      res.status(400).json(err);
+    .catch(({message}) => {
+      res.status(400).json(message);
     });
 }
 

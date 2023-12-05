@@ -9,8 +9,8 @@ function validateCreateGame(req, res, next) {
       req.body = game;
       next();
     })
-    .catch((err) => {
-      res.status(400).json(err);
+    .catch(({message}) => {
+      res.status(400).json(message);
     });
 }
 
@@ -23,8 +23,8 @@ function validateUpdateGame(req, res, next) {
       req.body = game;
       next();
     })
-    .catch((err) => {
-      res.status(400).json(err);
+    .catch(({message}) => {
+      res.status(400).json(message);
     });
 }
 

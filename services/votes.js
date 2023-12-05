@@ -55,7 +55,7 @@ async function validations(idGame, idAccount) {
   if (idGame && idAccount) {
     const accountAlreadyVotedOnThisGame = await GamesVotesCollection.findOne({ game_id: new ObjectId(idGame), account_id: idAccount });
     if (accountAlreadyVotedOnThisGame) {
-      throw new Error("El usuario ya votó en este juego");
+      throw new Error("Ya se realizo una votación en este juego");
     }
   }
   if (idAccount) {

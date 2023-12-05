@@ -1,5 +1,6 @@
 import { MongoClient, ObjectId } from "mongodb";
 import { getVotesByAccountId } from "../services/votes.js";
+import { createToken } from "./session.js";
 import bcrypt from "bcrypt";
 
 const client = new MongoClient("mongodb://127.0.0.1:27017");
@@ -12,6 +13,9 @@ async function createAccount(account) {
   const salt = await bcrypt.genSalt(10);
   newAccount.password = await bcrypt.hash(account.password, salt);
   await AccountsCollection.insertOne({ ...newAccount });
+  return {
+    token: await createToken({ ...account, password: undefined })
+  }
 }
 
 async function verifyAccount(account) {

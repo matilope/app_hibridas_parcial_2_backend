@@ -2,10 +2,10 @@ import * as AccountService from "../services/account.js";
 
 async function createAccount(req, res) {
   try {
-    await AccountService.createAccount(req.body);
-    res.status(201).json({ message: "La cuenta ha sido creada con éxito" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const token = await AccountService.createAccount(req.body);
+    res.status(201).json({ message: "La cuenta ha sido creada con éxito", ...token });
+  } catch ({ message }) {
+    res.status(500).json({ message });
   }
 }
 
@@ -14,8 +14,8 @@ async function getAccountById(req, res) {
   try {
     const account = await AccountService.getAccountById(id);
     res.status(200).json({ ...account });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch ({ message }) {
+    res.status(500).json({ message });
   }
 }
 
@@ -24,8 +24,8 @@ async function getAccountVotesById(req, res) {
   try {
     const account = await AccountService.getAccountVotesById(id);
     res.status(200).json({ ...account });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch ({ message }) {
+    res.status(500).json({ message });
   }
 }
 

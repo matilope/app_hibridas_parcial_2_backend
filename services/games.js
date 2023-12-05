@@ -29,7 +29,6 @@ async function createGame(game) {
 
 async function getGamesOrderByScore(filter = {}) {
   await client.connect();
-  console.log(filter);
   filter = {
     genre: { $regex: filter, $options: "i" }
   };
